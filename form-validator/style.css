@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f9fafb;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center; /* x horizontal */
+  align-items: center; /* y vertical efek jika height di set dulu ,kalau bisa 100vh   */
+  min-height: 100vh;
+  margin: 0;
+}
+/* container pmbungkus form */
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+h2 {
+  text-align: center;
+  margin: 0 0 20px;
+}
+.form {
+  padding: 30px 40px;
+}
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative; /*ini nanti jadi parent thd eror message
+  sbb nanti erro mesage di pasang/dtmpatkan absolute positionnya
+  jadi syaratnya parent harus relative.
+  
+  */
+}
+
+/*
+4 values margin :top-right-botom-left //searah jarum jam
+3 values margin : top right-left bottom
+2 values margin :top-botom right-left
+1 values all same vaues for whole :top-right-botom-left
+*/

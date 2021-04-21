@@ -16,7 +16,8 @@ tiap2 inputan
 
 */
 
-const showError = (input, message) => {
+//show Error
+function showError(input, message) {
   //input mewakili username atau element lain yg passing padanya
   const formControl = input.parentElement;
   formControl.className = 'form-control error';
@@ -25,38 +26,80 @@ const showError = (input, message) => {
   const small = formControl.querySelector('small');
   small.visible = true;
   small.innerText = message;
-};
-
-const showSuccess = (input) => {
+}
+//show success
+function showSuccess(input) {
   const formControl = input.parentElement;
   formControl.className = 'form-control success';
-};
-form.addEventListener('submit', (e) => {
+}
+
+//check email validation
+function isValidateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+/*
+ket re diaas adalah regex yg mana akan test email yg pasing di parameter email
+dan dibuat tulisannya lowercase dan dikmbalikan apakan bernila true or false
+
+  */
+
+/*
+kita refactor jadi yg banyak ini dibawah adEventlistener gak perlu di tulis lagi
+ulang
+
+
+*/
+//check required every single Fields
+function checkRequired(inputArr) {
+  inputArr.forEach(function (input) {
+    //ini tiap array inputarr
+    //diperiksa apa ada yg kosong jika ada maka akan ditampilkan
+    //errornya,ini function dalam function kita sbut highOrder function
+    if (input.value.trim() === '') {
+      //show sprti apa itu input.id  //ini sbnarnya nunjuk element
+      //id pada tag input
+      console.log(input.id);
+      showError(input, `${getFieldName(input)} is required`);
+    }
+  });
+}
+
+//Get Fieldname
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  //jika kosong
-  if (username.value === '') {
-    showError(inputname, 'username required');
-  } else {
-    showSuccess(username);
-  }
+  checkRequired([username, email, password]);
 
-  if (email.value === '') {
-    showError(inputname, 'email required');
-  } else {
-    showSuccess(email);
-  }
+  // //jika kosong
+  // if (username.value === '') {
+  //   showError(username, 'username required');
+  // } else {
+  //   showSuccess(username);
+  // }
 
-  if (password.value === '') {
-    showError(inputname, 'password required');
-  } else {
-    showSuccess(password);
-  }
-  if (username2.value === '') {
-    showError(inputname, 'username2 required');
-  } else {
-    showSuccess(username2);
-  }
+  // if (email.value === '') {
+  //   showError(email, 'email required');
+  // } else if (!isValidateEmail(email.value)) {
+  //   showError(email, 'email is not valid');
+  // } else {
+  //   showSuccess(email);
+  // }
+
+  // if (password.value === '') {
+  //   showError(password, 'password required');
+  // } else {
+  //   showSuccess(password);
+  // }
+  // if (password2.value === '') {
+  //   showError(password2, 'password2 required');
+  // } else {
+  //   showSuccess(password2);
+  // }
   //nah jadi gini parent dari input adalah form
   //nah utk tambah classnamenya supaya ada tanda error kita
   //memang inisial di parentnya  sprti yg kita taruh dicss

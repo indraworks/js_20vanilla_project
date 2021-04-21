@@ -105,7 +105,7 @@ pakai psudo selector after
     kalau visibility dia ada cuman di hide
   */
 }
-.form-control small {
+.form-control.error small {
   visibility: visible;
 }
 

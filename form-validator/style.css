@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+/*
+latarbelakang knapa kok harus buat variable 
+ya karn kita ganti dibagian declare cara buat di buat dibag roo
+nah stlahnya utk var ditulis contoh: --colorCiamik : #7e5436
+manggilnya nati dgn var(--colorCiamik)
+biasanya variable css itu isinya mainColor,secondaryColor,
+error dan success mesage ,textPrimary,textSEcondary etc
+jadi kalau pas mau rubah tinggal rubah di declarasi bikan di smua
+lini di bawah element css jadi tidak cape..
+
+*/
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -43,3 +59,65 @@ h2 {
 2 values margin :top-botom right-left
 1 values all same vaues for whole :top-right-botom-left
 */
+/* form control membungkus label dan input 
+ nah kita seting di form control utk success dan errornya 
+ nah anaknya /childnya itu yg dikasih warna berdasarkan status 
+ si parent form-control  conoth dibawah form-control.success input {}
+
+*/
+.form-control label {
+  color: #777;
+  display: block;
+  margin-bottom: 5px;
+}
+.form-control input {
+  display: block;
+  border-radius: 4px;
+  width: 100%; /*nah ini tricknya buat 100% lebar
+   baru pading biar rata dari tepi kedalam  */
+  padding: 10px;
+  font-size: 14px;
+}
+/* kit asengaja buaat outlinenya 0 dan aksih border abu2 */
+/* buat foucus  */
+.form-control input:focus {
+  outline: 0;
+  border-color: #777;
+}
+/*kalau sucess/error ditambah difrom control di html 
+pakai psudo selector after
+*/
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+}
+
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  /* beda dgn display:none kalau display none brarti udah pasti hapus
+    kalau visibility dia ada cuman di hide
+  */
+}
+.form-control small {
+  visibility: visible;
+}
+
+.form button {
+  cursor: pointer;
+  background: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
